@@ -1,16 +1,30 @@
 import fetch from "node-fetch";
 
-export function getCryptoData(symbol) {
-  let url =
-    "https://pro-api.coinmarketcap.com/v1/cryptocurrency/info" +
-    "?symbol=" +
-    symbol;
-  let options = {
-    method: "GET",
-    headers: { "X-CMC_PRO_API_KEY": "0e3ce94d-7ef6-44da-83d5-dba193390990" },
+export default class CoinMarketCapService {
+  url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/info";
+  methods = {
+    GET: "GET",
   };
-  fetch(url, options)
-    .then((res) => res.json())
-    .then((json) => console.log(json))
-    .catch((err) => console.error("error:" + err));
+  constructor(key) {
+    this.headers = { "X-CMC_PRO_API_KEY": key };
+    this.key = key;
+  }
+
+  async getCryptoData(symbol) {
+    try {
+      const result = await fetch(`${this.url}?symbol=${symbol}`, {
+        method: this.methods.GET,
+        headers: { ...this.headers },
+      });
+      const data = await result.json();
+      return this.parseResponseData(data.data, symbol);
+    } catch (error) {
+      throw new Error("error request");
+    }
+  }
+  parseResponseData(data, symbol = "") {
+    const values = data[symbol.toUpperCase()];
+
+    return { name: values.name, symbol: values.symbol };
+  }
 }
