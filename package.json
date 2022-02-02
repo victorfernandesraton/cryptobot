@@ -1,0 +1,14 @@
+{
+  "name": "cryptobot",
+  "version": "1.0.0",
+  "description": "Simple bot to leanring js",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "cryptobot"
+  ],
+  "author": "",
+  "license": "MIT"
+}
