@@ -5,7 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "node index.js",
+    "version": "echo 1.0"
   },
   "keywords": [
     "cryptobot"
