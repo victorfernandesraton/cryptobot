@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Simple bot to leanring js",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "test"
   },
@@ -10,5 +11,8 @@
     "cryptobot"
   ],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "27.4.7"
+  }
 }
